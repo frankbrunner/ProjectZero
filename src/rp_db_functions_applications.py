@@ -1,6 +1,6 @@
 
-from Ressourcenplanning.src.rp_db_struct import *
-from Ressourcenplanning.src.rp_db_functions import *
+from ProjectZero.src.rp_db_struct import *
+from ProjectZero.src.rp_db_functions import *
 
 class rp_Applications(db_functions):
     def __index__(self):

@@ -1,5 +1,5 @@
 import mysql.connector
-from Ressourcenplanning.src.rp_db_struct import *
+from ProjectZero.src.rp_db_struct import *
 
 class db_functions():
     def __init__(self, User, Passwd, Database):

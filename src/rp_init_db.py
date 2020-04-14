@@ -1,7 +1,7 @@
 import unittest
 import xlrd
-from src.dbconnect import mySql
-from Ressourcenplanning.src.rp_db_struct import *
+from ProjectZero.src.rp_db_connect import mySql
+from ProjectZero.src.rp_db_struct import *
 import mysql.connector
 
 class InitDB():
@@ -14,10 +14,10 @@ class InitDB():
         self.mycursor = self.mydb.cursor()
 
     def deletDatabase(self):
-        self.mycursor.execute("DROP DATABASE IF EXISTS Ressourcenplanning")
+        self.mycursor.execute("DROP DATABASE IF EXISTS ProjectZero")
 
     def createDatabase(self):
-        self.mycursor.execute("CREATE DATABASE Ressourcenplanning")
+        self.mycursor.execute("CREATE DATABASE ProjectZero")
 
     def creatDBUser(self):
         self.mycursor.execute("CREATE USER IF NOT EXISTS'dbuser'@'localhost' IDENTIFIED BY '34df!5awe'" )
@@ -26,7 +26,7 @@ class InitDB():
         self.mycursor.execute("GRANT ALL PRmycursor.executeIVILEGES ON *.* TO 'dbuser'@'localhost'")
 
     def createTables(self):
-        sql = mySql("dbuser", "34df!5awe", "Ressourcenplanning")
+        sql = mySql("dbuser", "34df!5awe", "ProjectZero")
         # Creat Datata Tables
         obj_Projects = Projects()
         sql.tableCreate(obj_Projects.tablename, obj_Projects.rows, obj_Projects.types)

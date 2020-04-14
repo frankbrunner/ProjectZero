@@ -1,8 +1,8 @@
 import unittest
-from Ressourcenplanning.src.rp_db_functions import db_functions
-from Ressourcenplanning.src.rp_db_functions_applications import *
+from ProjectZero.src.rp_db_functions import db_functions
+from ProjectZero.src.rp_db_functions_applications import *
 
-sql = db_functions("dbuser","34df!5awe","Ressourcenplanning")
+sql = db_functions("dbuser","34df!5awe","ProjectZero")
 
 
 testobject = ""
