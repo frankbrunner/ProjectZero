@@ -23,7 +23,7 @@ class InitDB():
         self.mycursor.execute("CREATE USER IF NOT EXISTS'dbuser'@'localhost' IDENTIFIED BY '34df!5awe'" )
 
     def setPermissions(self):
-        self.mycursor.execute("GRANT ALL PRmycursor.executeIVILEGES ON *.* TO 'dbuser'@'localhost'")
+        self.mycursor.execute("GRANT ALL PRIVILEGES ON  *.* TO 'dbuser'@'localhost'")
 
     def createTables(self):
         sql = mySql("dbuser", "34df!5awe", "ProjectZero")

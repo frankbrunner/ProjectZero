@@ -5,8 +5,6 @@ from ProjectZero.src.rp_db_functions_applications import *
 sql = db_functions("dbuser","34df!5awe","ProjectZero")
 
 
-testobject = ""
-
 class MyTestCase(unittest.TestCase):
     unittest.TestLoader.sortTestMethodsUsing = None
 

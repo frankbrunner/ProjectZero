@@ -3,7 +3,6 @@ from ProjectZero.src.rp_db_struct import *
 
 class db_functions():
     def __init__(self, User, Passwd, Database):
-
         self.host = "localhost"
         self.user = str(User)
         self.passwd = str(Passwd)
@@ -228,22 +227,22 @@ class db_functions():
         return result
 
     def sqlGenerator(self, table, rows, conditions=[],values=[]):
-        sql = "select "
+        sql = 'select '
         #rows to select
         if rows:
             for item in rows:
-                sql = sql + str(item)+ ","
+                sql = sql + str(item)+ ','
             sql = sql[0:-1]
         else:
             return None
          #add table
-        sql = sql + " from "+str(table)+" "
+        sql = sql + ' from '+str(table)+' '
         x=0
         if len(conditions) > 0:
-            sql = sql + " where "
+            sql = sql + ' where '
             for item in conditions:
-                sql = sql + " "+str(item) +"=" +str(values[x])
-                sql = sql +" and"
+                sql = sql + ' '+str(item) +'="' +str(values[x])+'"'
+                sql = sql +' and'
                 x +=1
             sql = sql[0:-3]
 
@@ -272,7 +271,6 @@ class db_functions():
         #0 Project successfull insert
         #1 Project allready exis
         #2 any Failure
-        print(table,rows,values,select)
         if self.checkIfExists(table,rows,values,select):
             #when True value is allready in db Return 1
             return 1
@@ -307,7 +305,7 @@ class db_functions():
 
         if type(conditions) == str:
             sql = 'SELECT Count(' + str(select) + ') FROM ' + str(table) +  ' WHERE ' + str(conditions) + ' = "' + str(values) +'"'
-            print (sql)
+
         #Der Type wird abgefragt um festzustellen ob es sich um nur eine condition geht oder mehrere
         if type(conditions) == list:
             sql = "SELECT Count(" + str(select) + ") FROM " + str(table) + " WHERE "
