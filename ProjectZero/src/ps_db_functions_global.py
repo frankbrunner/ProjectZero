@@ -17,68 +17,6 @@ class db_functions():
             database=self.database)
         self.dbcursor = self.db.cursor()
 
-    def getProjects(self, Project_id=None):
-        #if no Parameter return all Projects
-        #Return the Result list of tubles or None if not exist
-        table="Projects"
-        rows=["id","number","description"]
-
-        if Project_id != None:
-            conditions=["id"]
-            values = [Project_id]
-        else:
-            conditions=[]
-            values = []
-
-        sql = self.sqlGenerator(table,rows,conditions,values)
-        result=self.readData(sql)
-
-        if result == False:
-            return None
-        return result
-
-    def getProjectId(self, ProjectNumber):
-        #if no Parameter return all Projects
-        #Return the Result list of tubles or None if not exist
-        obj_Projects = Projects()
-        table=obj_Projects.tablename
-        conditions=[obj_Projects.number]
-        values = [ProjectNumber]
-        rows=["id"]
-
-        sql = self.sqlGenerator(table,rows,conditions,values)
-
-        result=self.readData(sql)
-
-        if result == False:
-            return None
-        else:
-            result = result[0]
-            result = result[0]
-        return result
-
-    def insertProject(self, ProjectNumber, ProjectDescription):
-        #Return Codes
-        #0 Project successfull insert
-        #1 Project allready exist
-        #2 any Failure
-        table = "Projects"
-        rows = ["number", "description"]
-        values = [int(ProjectNumber), str(ProjectDescription)]
-        select = "number"
-        return (self.checkAndInsert(table,rows,values,select))
-
-
-    # def deleteProject(self,ProjectNumber):
-    #     #Return Codes
-    #     #0 Project successfull deleted
-    #     #1 any Failure
-    #     table = "Projects"
-    #     row = "number"
-    #     value = ProjectNumber
-    #     returnCode = self.recordDelete(table,row,value)
-    #     return returnCode
-
     def getReleases(self,Testobject_id=None):
         #Return the Result tuble or None if not exist
         obj_Releases = Releases()
@@ -136,52 +74,6 @@ class db_functions():
         table = "Data_Releases"
         returnCode = self.recordDelete(table,row,value)
         return returnCode
-
-    def createTestobject(self, Porject_id=0, Demand_id=0, Planning_Item_id=0, Application_id=0):
-        #Return Code
-        #0 Project successfull insert
-        #1 Project allready exis
-        #2 any Failure
-        obj_Testobject = Testobject()
-        table = obj_Testobject.tablename
-        rows = obj_Testobject.rows
-        values = [str(Porject_id), str(Demand_id),str(Planning_Item_id),str(Application_id)]
-        select=obj_Testobject.project_id
-
-        condition=obj_Testobject.project_id
-        condition_value = Porject_id
-
-        returnValue = self.checkIfExists(table,condition,condition_value)
-        if returnValue==False:
-            sql = self.sqlGenearatorInsert(table,rows,values)
-            self.insertData(sql,values)
-        else:
-            return 1
-        return returnValue
-
-    def getTestobjectID(self, ProjectNumber):
-        #Return the id of Testobject
-        obj_Testobject = Testobject()
-        obj_join = Projects()
-        table= obj_Testobject.tablename
-        rows= obj_Testobject.rows
-        conditions=[obj_Testobject.project_id]
-        conditionsValue = [ProjectNumber]
-
-        sql = 'SELECT ' + obj_Testobject.tablename + '.id'\
-              ' FROM ' + obj_Testobject.tablename + \
-              ' INNER JOIN ' + obj_join.tablename +\
-              ' ON ' + obj_Testobject.tablename + '.' + obj_Testobject.project_id + '=' + obj_join.tablename + '.id ' \
-              'WHERE ' + obj_join.number +'="' + str(ProjectNumber) +'"';
-
-        result=self.readData(sql)
-
-        if result == False:
-            return None
-        else:
-            result = result[0]
-            result = result[0]
-        return result
 
     def createDemand(self,demand,Testobject_id=0,Release_id=0,Application_id=0,Supply_id=0):
         #minimum for demnad is Application and Release

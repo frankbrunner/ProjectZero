@@ -1,6 +1,6 @@
 import unittest
-from ProjectZero.src.rp_db_functions import db_functions
-from ProjectZero.src.rp_db_functions_applications import *
+from ProjectZero.src.ps_db_functions_global import db_functions
+from ProjectZero.src.pz_db_functions_applications import *
 
 sql = db_functions("dbuser","34df!5awe","ProjectZero")
 

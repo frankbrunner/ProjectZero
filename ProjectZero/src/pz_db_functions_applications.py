@@ -1,4 +1,4 @@
-from ProjectZero.src.rp_db_functions import *
+from ProjectZero.src.ps_db_functions_global import *
 import unittest
 
 class rp_Applications(db_functions):
