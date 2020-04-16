@@ -129,6 +129,7 @@ class mySql():
 
 			return False
 
+
 			
 #sql = mySql("dbuser","34df!5awe","belegeablegen")
 #rows=["name varchar(250)","match01 varchar(250)","match02 varchar(250),match03 varchar(250)","match04 varchar(250)"]

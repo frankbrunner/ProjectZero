@@ -47,6 +47,9 @@ class InitDB():
         obj_Demand = Demand()
         sql.tableCreate(obj_Demand.tablename, obj_Demand.rows, obj_Demand.types)
 
+        obj_Testobject_Application= Testobject_Application()
+        sql.tableCreate(obj_Testobject_Application.tablename, obj_Testobject_Application.rows, obj_Testobject_Application.types)
+
 
         #
         # sql.executeSql("set foreign_key_checks = 0")

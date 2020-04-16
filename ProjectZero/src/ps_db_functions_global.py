@@ -233,7 +233,16 @@ class db_functions():
         #Return Codes
         #0 Project successful deletet
         #1 not exist or error
-        sql = 'delete from ' + table + ' where ' + row + '="' + str(value)+'"'
+        sql = 'delete from ' + str(table) + ' where '
+        if type(row) == str:
+            sql = sql  + str(row) + '="' + str(value)+'"'
+        if type(row) == list:
+            x=0
+            for item in row:
+                sql = sql + str(item) + '="' + str(value[x])+'" and '
+                x+=1
+            sql = sql[0:-4]
+
         try:
             self.dbcursor.execute(sql)
             self.db.commit()
@@ -241,6 +250,27 @@ class db_functions():
         except mysql.connector.errors.ProgrammingError as error:
             return 1
 
+    def updateRecord(self, table, row, value, condition, conditionValue):
+        sql=""
+        if len(condition) == str:
+            sql = 'UPDATE ' + str(table) + ' ' \
+                'SET ' + str(row) + '= "' + str(value) + '" ' \
+                'WHERE ' + str(condition) + ' = "' + str(conditionValue) + '"'
+        if len(condition) == list:
+            x=0
+            sql = 'UPDATE ' + str(table) + ' ' \
+                    'SET ' + str(row) + '= "' + str(value) + '" WHERE '
+            for item in condition:
+                sql = sql + str(item) + ' = "' + str(conditionValue[x]) +'" and '
+                x += 1
+            sql = sql[0:-4]
+            print(sql)
+        try:
+            self.dbcursor.execute(sql)
+            self.db.commit()
+            return 0
+        except mysql.connector.errors.ProgrammingError as error:
+            return 1
 
 
 

@@ -90,7 +90,18 @@ class Testobject():
         self.types.append("int(250)")
         self.types.append("int(250)")
 
-
+class Testobject_Application():
+    def __init__(self):
+        #Table definition
+        self.tablename = "Testobject_Application"
+        #Row Definition
+        self.testobject_id = "testobject_id"
+        self.application_id = "application_id"
+        # List of all Rows to create tables automatic
+        self.rows = [self.testobject_id,self.application_id]
+        # List with types to create tables automatic
+        self.types = ["int(250)",
+                      "int(250)"]
 
 
 
