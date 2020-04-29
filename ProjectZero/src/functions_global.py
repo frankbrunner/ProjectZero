@@ -38,7 +38,7 @@ class db_functions():
               ' FROM ' + obj_Demand.tablename + \
               ' INNER JOIN ' + obj_join.tablename +\
               ' ON ' + obj_Demand.tablename + '.' + tableDemand_id + '=' + obj_join.tablename + '.id ' \
-              'WHERE '+obj_Demand.testobject_id+'="'+str(testobject_id)+'"';
+              'WHERE ' + obj_Demand.release_application_id + '="' + str(testobject_id) + '"';
 
         result = self.readData(sql)
         if result == False:

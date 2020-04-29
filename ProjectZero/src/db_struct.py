@@ -9,25 +9,19 @@ class Demand():
         self.tablename = "Demand"
         #Row Definition
         self.demand = "demand"
-        self.testobject_id = "testobject_id"
-        self.release_id = "release_id"
-        self.application_id = "application_id"
+        self.release_application_id = "release-application_id"
         self.supply_id = "supply_id"
         self.status = "status"
 
         # List of all Rows to create tables automatic
         self.rows = [self.demand,
-                     self.testobject_id,
-                     self.release_id,
-                     self.application_id,
+                     self.release_application_id,
                      self.supply_id,
                      self.status]
 
 
         #List with types to create tables automatic
         self.types = ["int(250)"]
-        self.types.append("int(250)")
-        self.types.append("int(250)")
         self.types.append("int(250)")
         self.types.append("int(250)")
         self.types.append("int(1)")

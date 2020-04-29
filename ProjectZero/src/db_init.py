@@ -1,4 +1,5 @@
 from ProjectZero.src.db_connect import mySql
+from ProjectZero.src.functions_projects import *
 
 import mysql.connector
 
