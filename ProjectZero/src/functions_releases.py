@@ -8,15 +8,15 @@ class pz_Releases(db_functions):
         self.obj_Releases= Releases()
         self.tableName = self.obj_Releases.tablename
 
-    def createRelease(self, Year=0, Type="MDR", Name="Medium Release"):
+    def createRelease(self, dateFrom="2020-01-30", dateTo="2020-02-30", ReleaseName="Medium Release"):
         # Return Codes
         # 0 Project successfull insert
         # 1 Project allready exis
         # 2 any Failure
         table = self.obj_Releases.tablename
-        rows = self.obj_Releases.rows
-        values = [int(Year), str(Type), str(Name)]
-        return (self.checkAndInsert(table, rows, values))
+        column = self.obj_Releases.column
+        values = [str(dateFrom), str(dateTo), str(ReleaseName)]
+        return (self.checkAndInsert(table, column, values))
 
     def deleteRelease(self, column="name", Name="MDR01"):
         #Return Codes
@@ -24,7 +24,7 @@ class pz_Releases(db_functions):
         #1 any Failure
         table = self.obj_Releases.tablename
         value = Name
-        returnCode = self.recordDelete(table, self.obj_Releases.name, value)
+        returnCode = self.recordDelete(table, self.obj_Releases.release, value)
         return returnCode
 
     def getReleaseID(self, ReleaseName):
@@ -35,7 +35,7 @@ class pz_Releases(db_functions):
         rows = ["id"]
 
         if ReleaseName != None:
-            conditions = [self.obj_Releases.name]
+            conditions = [self.obj_Releases.release]
             values = [ReleaseName]
         else:
             pass
@@ -48,23 +48,19 @@ class pz_Releases(db_functions):
             result = result[0]
         return result
 
-    def getReleases(self,Testobject_id=None):
+
+    def getReleases(self,debug=False):
         #Return the Result tuble or None if not exist
         obj_Releases = Releases()
         table=obj_Releases.tablename
-        rows= obj_Releases.rows
+        column= [obj_Releases.release]
 
-        if Testobject_id != None:
-            conditions = ["testobject_id"]
-            values = [Testobject_id]
-        else:
-            conditions = []
-            values = []
-
-        sql = self.sqlGenerator(table,rows,conditions,values)
+        sql = self.sqlGenerator(table,column)
+        if debug==True:
+            print(sql)
         result=self.readData(sql)
         if result == False:
-            return None
+            return 0
         return result
 
 
@@ -74,15 +70,15 @@ releases = pz_Releases( "dbuser", "34df!5awe", "ProjectZero")
 class MyTestCase(unittest.TestCase):
 
     def test_a_createReleases(self):
-        self.assertEqual(releases.createRelease(2020,"MDR","MDR04"),0)
-        self.assertEqual(releases.createRelease(2020, "MDR", "MDR04"), 1)
+        self.assertEqual(releases.createRelease("2020-01-30","2020-01-25","RE25A"),0)
+        self.assertEqual(releases.createRelease("2020-01-30","2020-01-25","RE25A"), 1)
 
     def test_b_getReleaseID(self):
-        self.assertGreater(releases.getReleaseID("MDR04"), 0)
-        print(releases.getReleaseID("MDR04"))
+        self.assertGreater(releases.getReleaseID("RE25A"), 0)
+        print(releases.getReleaseID("RE25A"))
 
     def test_c_deleteProject(self):
-        self.assertEqual(releases.deleteRelease("Description","MDR04"), 0)
+        self.assertEqual(releases.deleteRelease("release_name","RE25A"), 0)
 
 
 

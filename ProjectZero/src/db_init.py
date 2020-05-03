@@ -31,7 +31,8 @@ class InitDB():
         sql.tableCreate(obj_Projects.tablename, obj_Projects.rows, obj_Projects.types)
 
         obj_Releases = Releases()
-        sql.tableCreate(obj_Releases.tablename, obj_Releases.rows, obj_Releases.types)
+        print(obj_Releases.tablename, obj_Releases.column, obj_Releases.types)
+        sql.tableCreate(obj_Releases.tablename, obj_Releases.column, obj_Releases.types)
 
         obj_Applications = Applications()
         sql.tableCreate(obj_Applications.tablename, obj_Applications.rows, obj_Applications.types)

@@ -1,0 +1,57 @@
+{% extends "layouts/main.html" %}
+
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="four columns">
+            <label>Projekte</label>
+            <select id="projects" class="u-full-width"></select>
+            <input id="shortDescription" class="u-full-width" type="text" placeholder="Kurze Projekt Beschreibung">
+            <input class="button-primary" id="saveTestObject" type= "button" value="Save">
+
+        </div>
+
+    </div>
+
+    <div class="row" >
+        <div class="four columns">
+            <label>Testobjekte</label>
+            <table id="table" class="u-full-width">
+                <thead>
+                    <tr></tr>
+                </thead>
+                <tbody id="testobjectbody"></tbody>
+            </table>
+        </div>
+
+        <div class="four columns">
+            <label>Releases</label>
+            <table id="tableRelease" class="u-full-width">
+                <thead id="releaseHead">
+                    <tr></tr>
+                </thead>
+                <tbody id="releases"></tbody>
+            </table>
+
+            <div>
+                 <input class="button-primary" id="plusRelease" type="hidden" value="+">
+            </div>
+            <div id="divSelectReleases">
+                <select id="selectReleases" class="u-full-width"></select>
+                <input class="button-primary" id="saveRelease" type= "button" value="Save">
+            </div>
+
+        </div>
+
+        <div class="four columns">four
+
+
+        </div>
+    </div>
+</div>
+
+
+<script src="/static/scripts/demand.js"></script>
+
+
+{% endblock %}

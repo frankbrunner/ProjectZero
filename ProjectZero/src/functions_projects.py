@@ -8,12 +8,11 @@ class pz_Projects(db_functions):
         self.obj_Projects= Projects()
         self.tableName = self.obj_Projects.tablename
 
-    def createProject(self, ProjectNumber, ProjectDescription):
+    def createProject(self, ProjectNumber, ProjectDescription,debug=False):
         #Return Codes
         #0 Project successfull insert
         #1 Project allready exist
         #2 any Failure
-        debug = False
         rows = self.obj_Projects.rows
         values = [int(ProjectNumber), str(ProjectDescription)]
         select = self.obj_Projects.number
@@ -73,22 +72,23 @@ app = pz_Projects( "dbuser", "34df!5awe", "ProjectZero")
 class MyTestCase(unittest.TestCase):
 
     def test_a_createProject(self):
-        self.assertEqual(app.createProject(4856,"Test Project"),0)
-        self.assertEqual(app.createProject(4856, "Test Project"), 1)
-
-    def test_b_createProjet(self):
-        self.assertEqual(app.createProject(4888, "Test Project"), 0)
+        self.assertEqual(app.createProject(9901,"Test Project"),0)
+        self.assertEqual(app.createProject(9902, "Test Project"), 0)
+        self.assertEqual(app.createProject(9903, "Test Project"), 0)
+        self.assertEqual(app.createProject(9903, "Test Project"), 1)
 
     def test_c_getProjects(self):
-        list = [(4856,"Test Project"),(4888,"Test Project")]
+        list = [(9901,"Test Project"),(9902,"Test Project"),(9903,"Test Project")]
         self.assertCountEqual(app.getProjects(),list)
 
     def test_d_getProjectsID(self):
-        self.assertGreater(app.getProjectId(4856),0)
+        self.assertGreater(app.getProjectId(9901),0)
 
     def test_e_deleteProjects(self):
-        self.assertEqual(app.deleteProject(4856),0)
-        self.assertEqual(app.deleteProject(4888),0)
+        self.assertEqual(app.deleteProject(9901),0)
+        self.assertEqual(app.deleteProject(9902), 0)
+        self.assertEqual(app.deleteProject(9903), 0)
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

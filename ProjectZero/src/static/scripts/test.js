@@ -1,4 +1,0 @@
-$("#sethomebase").click(function()
-    {
-    }
-);

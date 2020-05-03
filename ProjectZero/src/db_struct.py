@@ -42,16 +42,17 @@ class Releases():
         #Table definition
         self.tablename = "Releases"
         #Row Definition
-        self.year = "year"
-        self.type = "type"
-        self.name = "name"
+        #A date. Format: YYYY-MM-DD. The supported range is from '1000-01-01' to '9999-12-31'
+        self.datefrom = "date_from"
+        self.dateto = "date_to"
+        self.release = "release_name"
         # List of all Rows to create tables automatic
-        self.rows = [self.year,
-                     self.type,
-                     self.name]
+        self.column = [self.datefrom,
+                       self.dateto,
+                       self.release]
         # List with types to create tables automatic
-        self.types = ["int(4)"]
-        self.types.append("varchar(250)")
+        self.types = ["date"]
+        self.types.append("date")
         self.types.append("varchar(250)")
 
 class Projects():

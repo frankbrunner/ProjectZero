@@ -27,12 +27,12 @@ class db_functions():
             obj_join = Applications()
             tableDemand_id = obj_Demand.application_id
             obj_join = Applications()
-            row = obj_join.name
+            row = obj_join.release
 
         if tableDemand_id == "release":
             obj_join = Releases()
             tableDemand_id = obj_Demand.release_id
-            row = obj_join.name
+            row = obj_join.release
 
         sql = 'SELECT ' + obj_join.tablename +'.' + row +\
               ' FROM ' + obj_Demand.tablename + \
@@ -85,34 +85,38 @@ class db_functions():
 
         return sql
 
-    def checkAndInsert(self,table,rows,values,debug=False ,select="*"):
+    def checkAndInsert(self, table, columns, values, debug=False, select="*"):
         #Return Codes
         #0 Project successfull insert
         #1 Project allready exis
         #2 any Failure
-        if self.checkIfExists(table,rows,values,select):
-            if debug:
-                print("checkIFExist: "+str(self.checkIfExists(table,rows,values,select)))
+        if self.checkIfExists(table, columns, values, select):
+            if debug == True:
+                print("checkIFExist: " + str(self.checkIfExists(table, columns, values, select)))
+                print("values: " +str(values))
             #when True value is allready in db Return 1
             return 1
         else:
-            sql = self.sqlGenearatorInsert(table,rows,values)
-            if debug:
+            sql = self.sqlGenearatorInsert(table, columns, values)
+            if debug == True:
                 print("sql: "+str(sql))
+                print("values: " + str(values))
             if self.insertData(sql,values):
                 #if Return 0 recored has been created
                 return 0
             else:
                 return 2
 
-    def readData(self, sql):
+    def readData(self, sql,debug=False):
+        if debug:
+            print("readData sql:"+str(sql))
         try:
             self.dbcursor.execute(sql)
             result = self.dbcursor.fetchall()
             return result
 
         except mysql.connector.errors.ProgrammingError as error:
-            result = False
+            result = 0
         return result
 
     def insertData(self,sql,val):
