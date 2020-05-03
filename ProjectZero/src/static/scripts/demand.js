@@ -1,5 +1,7 @@
-var projecNumber=225;
+var projecNumber;
+var release;
 
+var visibilityStatus = "hide";
 
 
 function getTestobjects()
@@ -64,31 +66,6 @@ function saveTestobject()
         }       
     })
 }
-$("#saveTestObject").mouseup(function()
-{
-    saveTestobject()
-})
-$("#table tbody").on("mouseover","tr",function()
-{
-    $(this).addClass("hover");
-})
-$("#table tbody").on("mouseout","tr",function()
-{
-    $(this).removeClass("hover");
-})
-$("#table tbody").on("click","tr",function()
-{
-    if ( $(this).hasClass('onclick') ) {
-        $(this).removeClass('onclick');
-    } else {
-        console.log("else");
-        $('#table tr.onclick').removeClass('onclick');
-        $(this).addClass('onclick');
-    }
-    projecNumber = $(this).text();
-    getRelease($(this).text());
-});
-
 function getRelease(ProjectNummber)
 {
     var test = ProjectNummber;
@@ -142,12 +119,6 @@ function getReleases()
         }       
     })
 }
-$("#plusRelease").on("click",function()
-{
-    getReleases();
-    
-})
-
 function addRelease(ReleaseName,ProjectNummber)
 {
     console.log(ReleaseName);
@@ -176,12 +147,71 @@ function addRelease(ReleaseName,ProjectNummber)
         }       
     })
 }
+function hideElement(element2Hide)
+{
+    $('#'+element2Hide).hide();
+}
+function showElement(element2Show)
+{
+    $('#'+element2Show).show();
+}
+$("#saveTestObject").mouseup(function()
+{
+    saveTestobject()
+})
+$("#table tbody,#tableRelease tbody").on("mouseover","tr",function()
+{
+    $(this).addClass("hover");
+})
+$("#table tbody,#tableRelease tbody").on("mouseout","tr",function()
+{
+    $(this).removeClass("hover");
+})
+$("#table tbody").on("click","tr",function()
+{
+    if ( $(this).hasClass('onclick') ) {
+        $(this).removeClass('onclick');
+    } else {
+        console.log("else");
+        $('#table tr.onclick').removeClass('onclick');
+        $(this).addClass('onclick');
+    }
+    projecNumber = $(this).text();
+    getRelease($(this).text());
+})
+$("#tableRelease tbody").on("click","tr",function()
+{
+    if ( $(this).hasClass('onclick') ) {
+        $(this).removeClass('onclick');
+    } else {
+        console.log("else");
+        $('#tableRelease tr.onclick').removeClass('onclick');
+        $(this).addClass('onclick');
+    }
+ 
+})
 $("#saveRelease").mouseup(function()
 {
     addRelease($("#selectReleases :selected").text(),projecNumber);
     getRelease(projecNumber);
+    hideElement("divSelectReleases")
+})
+$("#plusRelease").on("click",function()
+{
+
+    if (visibilityStatus == "hide"){
+        showElement("divSelectReleases")
+        getReleases();
+        visibilityStatus = "shown";
+    }else{
+        hideElement("divSelectReleases")
+        visibilityStatus = "hide";
+    }
 })
 
 getTestobjects();
 getProjects()
+hideElement("divSelectReleases")
+
+
 
