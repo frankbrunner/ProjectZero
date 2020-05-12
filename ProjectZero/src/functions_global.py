@@ -2,11 +2,11 @@ import mysql.connector
 
 
 class db_functions():
-    def __init__(self, User, Passwd, Database):
+    def __init__(self):
         self.host = "localhost"
-        self.user = str(User)
-        self.passwd = str(Passwd)
-        self.database = str(Database)
+        self.user = "dbuser"
+        self.passwd = "34df!5awe"
+        self.database = "ProjectZero"
         self.dbconnect()
 
     def dbconnect(self):

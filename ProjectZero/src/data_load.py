@@ -1,12 +1,10 @@
 from ProjectZero.src.functions_projects import *
 from ProjectZero.src.functions_releases import *
+from ProjectZero.src.functions_applications import *
 
-dbuser = "dbuser"
-password = "34df!5awe"
-db = "ProjectZero"
-
-projects = pz_Projects(dbuser,password,db)
-releases = pz_Releases(dbuser,password,db)
+projects = pz_Projects()
+releases = pz_Releases()
+applications = pz_Applications()
 
 class dataLoad():
     def loadPorjects(self):
@@ -27,9 +25,14 @@ class dataLoad():
             releases.createRelease(item,dateTo[x],releaseName[x])
             x +=1
 
+    def loadApplications(self):
+        applicationName = ["PEDAS","ADW","CRMPF"]
+        for item in applicationName:
+            applications.createApplication(item)
 
 
 dataLoad = dataLoad()
 if __name__ == '__main__':
     dataLoad.loadPorjects()
     dataLoad.loadReleases()
+    dataLoad.loadApplications()

@@ -12,8 +12,7 @@
         </div>
 
     </div>
-
-    <div class="row" >
+    <div id="divMain"  class="row" >
         <div class="four columns">
             <label>Testobjekte</label>
             <table id="table" class="u-full-width">
@@ -27,15 +26,15 @@
         <div class="four columns">
             <label>Releases</label>
             <table id="tableRelease" class="u-full-width">
-                <thead id="releaseHead">
-                    <tr></tr>
-                </thead>
-                <tbody id="releases"></tbody>
+                <thead id="releaseHead"></thead>
             </table>
 
-            <div>
-                 <input class="button-primary" id="plusRelease" type="hidden" value="+">
-            </div>
+            <table style="display:none" id="plusRelease" class="u-full-width">
+                <tbody >
+                <td id="addRelease"><b>+ release</b></td>
+                </tbody>
+            </table>
+
             <div id="divSelectReleases">
                 <select id="selectReleases" class="u-full-width"></select>
                 <input class="button-primary" id="saveRelease" type= "button" value="Save">

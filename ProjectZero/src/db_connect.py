@@ -1,12 +1,12 @@
 import mysql.connector
 
 class mySql():
-	def __init__(self,User,Passwd,Database):
+	def __init__(self):
 
 			self.host="localhost"
-			self.user=str(User)
-			self.passwd=str(Passwd)
-			self.database=str(Database)
+			self.user="dbuser"
+			self.passwd="34df!5awe"
+			self.database="ProjectZero"
 			self.dbconnect()
 		
 	def dbconnect(self):
@@ -36,13 +36,14 @@ class mySql():
 			sql = sql + 'create_at timestamp default current_timestamp)'
 			self.dbcursor.execute(sql)
 			return True
-
 		except mysql.connector.errors.ProgrammingError as error:
 			#Table allready exist
 			if error.sqlstate == "42S01":
 				return error.sqlstate
 			else:
 				return error.msg
+		finally:
+			self.dbcursor.close()
 
 	def tableDelete(self,tableName):
 		try:
@@ -55,6 +56,8 @@ class mySql():
 				return error.sqlstate
 			else:
 				return error.msg
+		finally:
+			self.dbcursor.close()
 	#attributes are a 2 dimension Array [["row01",value]]
 	def recordCreate(self, table, attributes):
 		sql= "insert into " + table+" ("
@@ -75,6 +78,8 @@ class mySql():
 		except mysql.connector.errors.ProgrammingError as error:
 			print(error)
 			return False
+		finally:
+			self.dbcursor.close()
 
 	def executeSql(self, sql):
 		try:
@@ -82,6 +87,8 @@ class mySql():
 			return True
 		except mysql.connector.errors.ProgrammingError as error:
 			return False
+		finally:
+			self.dbcursor.close()
 		
 	def recordDelete(self,table,rowname,value):
 		sql = 'delete from '+table+' where '+rowname+'="'+value+'"'
@@ -91,6 +98,8 @@ class mySql():
 			return True
 		except mysql.connector.errors.ProgrammingError as error:
 			return False
+		finally:
+			self.dbcursor.close()
 
 	# selectAttribute= rowto select  condition=row to select
 	def recordSelect(self, table, selectColume, condition, value,maxResult):
@@ -102,6 +111,8 @@ class mySql():
 		except mysql.connector.errors.ProgrammingError as error:
 			result = None
 			return result
+		finally:
+			self.dbcursor.close()
 
 	def returnSpecificCountOfResult(self,result, maxResult):
 		i=0
@@ -126,8 +137,9 @@ class mySql():
 			else:
 				return False
 		except mysql.connector.errors.ProgrammingError as error:
-
 			return False
+		finally:
+			self.dbcursor.close()
 			
 #sql = mySql("dbuser","34df!5awe","belegeablegen")
 #rows=["name varchar(250)","match01 varchar(250)","match02 varchar(250),match03 varchar(250)","match04 varchar(250)"]
