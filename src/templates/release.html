@@ -1,0 +1,28 @@
+{% extends "layouts/main.html" %}
+
+{% block content %}
+<div id="blockContent" class="container">
+
+
+       <div class="row">
+         <div class="Eight columns">
+           <table id="releasetable" class="u-full-width">
+           </table>
+         </div>
+       </div>
+
+           <div class="row">
+            <div class="three columns">
+                <label for="release_update">Modify Release:</label>
+                    <input id="release_update" class="u-full-width" type="text"  value="">
+            </div>
+        </div>
+    <input id="update" class="button-primary" type="submit" value="Update">
+    <input id="delete" class="button-primary" type="submit" value="Delete">
+    <input id="create" class="button-primary" type="submit" value="Create">
+
+</div>
+
+<script src="/static/scripts/release.js"></script>
+{% endblock %}
+

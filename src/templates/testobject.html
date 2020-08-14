@@ -1,0 +1,73 @@
+{% extends "layouts/main.html" %}
+
+{% block content %}
+<div id="blockContent" class="container">
+
+    <div class="row">
+        <div class="two columns">
+            <label for="project">PI/Projects:</label>
+            <select class="u-full-width" id="project">
+                <option value="Option 1">0000</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="two columns">
+            <label for="releases">Releses:</label>
+            <select class="u-full-width" id="releases">
+                <option value="Option 1">0000</option>
+            </select>
+        </div>
+        <div class="two columns">
+            <label for="release">""</label>
+            <input id="release" class="button-primary" type="submit" value="add">
+        </div>
+        <div class="row">
+            <div class="Eight columns">
+                <table id="release_added" class="u-full-width">
+                </table>
+            </div>
+        </div>
+
+
+        <div class="row">
+        <div class="two columns">
+            <label for="applications">Applications:</label>
+            <select class="u-full-width" id="applications">
+                <option value="Option 1">0000</option>
+            </select>
+        </div>
+        <div class="two columns">
+            <label for="applications">""</label>
+                <input id="add_app" class="button-primary" type="submit" value="add">
+        </div>
+       <div class="row">
+         <div class="Eight columns">
+           <table id="application_added" class="u-full-width">
+           </table>
+         </div>
+       </div>
+
+
+
+
+
+    </div>
+    <div class="row">
+            <div class="two columns">
+                <label for="demand">Demand:</label>
+                 <input id="demand" class="u-full-width" type="text"  value="50">
+            </div>
+        </div>
+
+        <input id="update" class="button-primary" type="submit" value="Update">
+        <input id="delete" class="button-primary" type="submit" value="Delete">
+
+
+
+</div>
+
+<script src="/static/scripts/page_testobject.js"></script>
+{% endblock %}
+

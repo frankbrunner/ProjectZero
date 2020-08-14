@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <title>Ressourcenplanung</title>
+    <link rel="stylesheet" href="/static/lib/skeleton/normalize.css">
+    <link rel="stylesheet" href="/static/lib/skeleton/skeleton.css">
+    <link rel="stylesheet" href="/static/scripts/style.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="/static/scripts/global_functions.js"></script>
+    <script src="/static/scripts/class_backend.js"></script>
+     <script src="/static/scripts/class_testobject.js"></script>
+    <script src="/static/scripts/functions_button.js"></script>
+        <script src="/static/scripts/functions_callback.js"></script>
+
+
+
+</head>
+
+<body>
+    <div class="container">
+        <input class="button-primary" id="button_list" type="button" value="List">
+        <input class="button-primary" id="button_modify_testobject" type= "button" value="Modify">
+        <input class="button-primary" id="button_create" type="button" value="Create">
+        <input class="button-primary" id="button_application" type="button" value="Applications">
+        <input class="button-primary" id="button_release" type="button" value="Releases">
+        <input class="button-primary" id="button_user" type="button" value="User">
+    </div>
+
+    {% block content %}{%endblock%}
+
+
+</body>
+</html>
+
